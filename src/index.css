@@ -1,0 +1,70 @@
+:root {
+ margin: 0 auto;
+padding: 0;
+box-sizing: border-box;
+font-family: Rubik, serif ;
+font-weight: 500;
+font-size: 18px;
+-webkit-text-size-adjust: 100%;
+height: 100%;
+}
+@font-face {
+    font-family: "Rubik";
+    src: url("/public/fonts/Rubik-VariableFont_wght.ttf") format("woff2");
+}
+/*remember we set height, but if we set width, it does not take into account the scrollbar 10px, this creates horizontal scroller on the bottom
+    the solution is to not set width anywhere and it defaults, or set auto only, but we should set height. if we do set width, choose 100% over 100vw
+        to avoid surprise scrollbars   https://www.freecodecamp.org/news/html-page-width-height/        https://css-tricks.com/the-lengths-of-css/
+  https://www.nordtheme.com/
+*/
+
+
+html, body, #root, .App{
+height: 100%;
+margin: 0;
+padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Rubik, serif ;
+}
+
+button{
+border: 1px solid #2e3440;
+background-color: rgb(67, 76, 94);
+padding: 0.3rem 1.5rem;
+width: max-content;
+color: #88c0d0;
+border-radius: 3px;
+transition: transform 100ms ease-in-out;
+/*margin-top: 1rem;*/
+cursor: pointer;
+}
+button:hover  {
+background-color: rgb(67,76,94, 0.7);
+cursor: pointer;
+}
+#root {
+}
+.App {
+display: flex;
+flex-direction: column;
+
+}
+
+.App.dark-mode {
+background-color: #2e3440;
+color: rgb(236, 239, 244);
+}
+
+.App.light-mode {
+color: #2e3440;
+background-color: aliceblue;
+}
+
+
+
+
