@@ -45,19 +45,19 @@ npm run build
 npm run deploy
 
 
-To make work with github pages
+**To make work with github pages we must do ALL of these **
 
-  go into package.json and add
-  "homepage": "/github-repo-name/#",
+go into package.json and add
+"homepage": "/github-repo-name/#",
 
 
-  go into vite.config.js and add:
-     base: "/github-repo-here"
+go into vite.config.js and add:
+ base: "/github-repo-here"
 
 inside main.jsx -> the router component needs a basename or else it will not show up in the github page link
-        <Router basename={'/react-directory-here'}>
-            <App />
-        </Router>
+<Router basename={'/react-directory-here'}>
+    <App />
+</Router>
 
 
 
