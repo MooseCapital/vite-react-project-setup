@@ -1,6 +1,6 @@
 import {useState, useEffect, useRef, useContext} from 'react'
 import {AppContext} from "./components/AppContextProvider.jsx";
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import Home from "./components/Home.jsx";
 
 function App(props) {
@@ -15,6 +15,8 @@ function App(props) {
         <Routes>
             <Route path={"/"} element={<Home/>}/>
 
+            {/* catch all, so any unknown pages navigate back to the home page  */}
+            <Route path="*" element={<Navigate to="/" />} />
         </Routes>
     </div>
   )

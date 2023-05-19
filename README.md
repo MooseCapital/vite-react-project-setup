@@ -17,3 +17,20 @@ put code in 3 backticks to be copyable
 9. now we can remove any other local branches that might have been created from "reverting" our local main to the remote commit. but KEEP our newly created local "test" branch
 10. Main and test local branches should be at the same commit, and we should only have one. Now it is time to add the remote commit to our github project link
 11. for good practice, use "test" branch daily, then when we have important updates, use the main
+
+## router
+we replaced Browser router with [Hashrouter](https://stackoverflow.com/questions/51974369/what-is-the-difference-between-hashrouter-and-browserrouter-in-react)
+in Github pages, we reloaded /about page and it would give a 404! 
+
+This is because, BrowserRouter syncs UI with url in the browser with HTML history API.
+
+HashRouter uses the has part of our URL to sync, so when we refresh, in local host, this is taken care of because, we have local server!
+but when on github pages, we have no server, only front-end. So when refreshing on another page, the server doesn't take it to the current 
+/about page . Hashrouter handles this, for now, later I assume we use the server side to change routing pages
+
+
+```jsx
+<HashRouter>
+        <App colorMode={"light-mode"} />
+</HashRouter>
+```
