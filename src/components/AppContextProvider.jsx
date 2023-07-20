@@ -7,10 +7,10 @@ function AppContextProvider(props) {
     //when we want to use it on a component, import
         //import {AppContext} from "../components/AppContextProvider.jsx";
     // const context = useContext(AppContext)
-
+    const [colorMode, setColorMode] = useState("light-mode");
 
     return (
-        <AppContext.Provider value={{ }}>
+        <AppContext.Provider value={{colorMode, setColorMode }}>
             {props.children}
         </AppContext.Provider>
     )

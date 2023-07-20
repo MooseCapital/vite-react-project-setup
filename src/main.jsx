@@ -1,15 +1,16 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import {BrowserRouter, HashRouter} from "react-router-dom"
-import {AppContextProvider} from "./components/AppContextProvider.jsx";
+import {AppContext, AppContextProvider} from "./components/AppContextProvider.jsx";
+const context = useContext(AppContext);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <AppContextProvider>
     <HashRouter >
-        <App colorMode={"light-mode"} />
+        <App/>
     </HashRouter>
   </AppContextProvider>
   </React.StrictMode>,

@@ -3,12 +3,14 @@ import {AppContext} from "./components/AppContextProvider.jsx";
 import {Navigate, Route, Routes} from "react-router-dom";
 import Home from "./components/Home.jsx";
 
+const appContext = useContext(AppContext);
+
 function App(props) {
   // install react-router-dom in main.jsx with a click
-  //set light-mode or dark-mode in main.jsx
+  //set light-mode or dark-mode with useContext and appContext.setColorMode, to light-mode or dark-mode
 
   return (
-    <div className={`${props.colorMode} App`}>
+    <div className={`${appContext.colorMode} App`}>
 
 
 
