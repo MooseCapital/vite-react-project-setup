@@ -4,7 +4,6 @@ import App from './App'
 import './index.css'
 import {BrowserRouter, HashRouter} from "react-router-dom"
 import {AppContext, AppContextProvider} from "./components/AppContextProvider.jsx";
-const context = useContext(AppContext);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -18,7 +18,8 @@ height: 100%;
   https://www.nordtheme.com/
 */
 
-
+/* if the page is NOT filled up, the color will only show up to the current elements height, if height is 100% it will up the page, but once you scroll
+    below the page load view, the background color of .App will not cover it, so we need min-height to cover the entire scrollable page. even though it looks bad at first */
 html, body, #root, .App{
 min-height: 100%;
 margin: 0;
@@ -32,22 +33,31 @@ padding: 0;
     font-family: Rubik, serif ;
 }
 
-button{
-border: 1px solid #2e3440;
-background-color: rgb(67, 76, 94);
-padding: 0.3rem 1.5rem;
+button {
+all: unset;
+padding: 0.375em 0.75em;
 width: max-content;
-color: #88c0d0;
 border-radius: 3px;
-transition: transform 100ms ease-in-out;
-/*margin-top: 1rem;*/
+transition:  200ms ease-in-out;
 cursor: pointer;
+font-size: 1.2rem;
+font-weight: 400;
 }
-button:hover  {
-background-color: rgb(67,76,94, 0.7);
-cursor: pointer;
+.light-mode button{
+border: 1px solid #2e3440;
+color: #2e3440;
 }
-#root {
+.light-mode button:hover, .dark-mode button:hover  {
+border: 1px solid #88c0d0;
+color: #88c0d0;
+}
+.dark-mode button{
+border:0.0625em solid rgb(76, 86, 106);
+color: inherit;
+}
+
+body {
+/* background-color: #88c0d0; */
 }
 .App {
 display: flex;
@@ -62,7 +72,7 @@ color: rgb(236, 239, 244);
 
 .App.light-mode {
 color: #2e3440;
-background-color: aliceblue;
+background-color: white;
 }
 
 

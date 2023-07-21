@@ -6,7 +6,8 @@ function Home(props) {
 
     return (
         <>
-            <div>hello</div>
+            <div>Home page</div>
+            <button>click me</button>
         </>
     )
 }
