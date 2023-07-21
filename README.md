@@ -69,6 +69,6 @@ but when on github pages, we have no server, only front-end. So when refreshing 
 
 ```jsx
 <HashRouter>
-        <App colorMode={"light-mode"} />
+        <App/>
 </HashRouter>
 ```

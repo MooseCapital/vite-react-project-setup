@@ -9,6 +9,8 @@ function App(props) {
   // install react-router-dom in main.jsx with a click
   //set light-mode or dark-mode with useContext and appContext.setColorMode, to light-mode or dark-mode
 const context = useContext(AppContext)
+//to set the mode from light to dark, use context state
+// context.setColorMode("dark-mode")
 
   return (
     <div className={`${context.colorMode} App`}>
