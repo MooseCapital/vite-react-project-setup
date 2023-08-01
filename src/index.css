@@ -16,12 +16,18 @@ height: 100%;
     the solution is to not set width anywhere and it defaults, or set auto only, but we should set height. if we do set width, choose 100% over 100vw
         to avoid surprise scrollbars   https://www.freecodecamp.org/news/html-page-width-height/        https://css-tricks.com/the-lengths-of-css/
   https://www.nordtheme.com/
+    NEVER set page WIDTH, we get horizontal scroll issues.
 */
 
 /* if the page is NOT filled up, the color will only show up to the current elements height, if height is 100% it will up the page, but once you scroll
-    below the page load view, the background color of .App will not cover it, so we need min-height to cover the entire scrollable page. even though it looks bad at first */
+    below the page load view, the background color of .App will not cover it, so we need min-height to cover the entire scrollable page. even though it looks bad at first
+    our page may not be up to the full length, to not get the height: 100% error of it not filling IF we scrolls past 100%, we use min-height: 100vh, so it starts off filling
+    the full page even though its not full, and it goes past it if we make our page longer, so MIN height is not 100% of our current short content, its 100vh of entire page,
+    */
+
+
 html, body, #root, .App{
-min-height: 100%;
+min-height: 100vh;
 margin: 0;
 padding: 0;
 }
