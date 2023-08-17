@@ -1,4 +1,5 @@
 import {useState, useEffect, useRef, useContext} from 'react'
+import React from 'react'
 import {AppContext} from "./components/AppContextProvider.jsx";
 import {Link, Navigate, Route, Routes} from "react-router-dom";
 import Home from "./components/Home.jsx";

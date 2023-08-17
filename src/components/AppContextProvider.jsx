@@ -1,4 +1,5 @@
 import {useContext, useEffect, useState, useRef, createContext} from 'react'
+import React from 'react'
 const AppContext = createContext({})
 
 function AppContextProvider(props) {

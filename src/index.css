@@ -80,7 +80,9 @@ color: rgb(236, 239, 244);
 color: #2e3440;
 background-color: white;
 }
-
+input[type="text"] {
+max-width: 10rem;
+}
 
 
 
