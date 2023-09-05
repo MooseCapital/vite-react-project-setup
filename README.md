@@ -18,7 +18,7 @@ put code in 3 backticks to be copyable
 10. Main and test local branches should be at the same commit, and we should only have one. 
 11. for good practice, use "test" branch daily, then when we have important updates, use the main
 
-## npm config
+## npm config run scripts
 1. At the NPM config at the top, click "edit configurations", then add NPM from the list
 2. make sure to add the "dev" and "preview script" each, to start a local server with 
 1 click to the green arrow

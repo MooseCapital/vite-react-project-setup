@@ -12,5 +12,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <App/>
     </HashRouter>
   </AppContextProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )
