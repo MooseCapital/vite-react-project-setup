@@ -4,15 +4,14 @@ import {Link, Navigate, Route, Routes} from "react-router-dom";
 import Home from "./components/Home.jsx";
 import About from "./components/About.jsx";
 import {ErrorPage} from "./components/ErrorPage.jsx";
-import {useSelector} from "react-redux";
+import {AppContext} from "./components/AppContextProvider.jsx";
 
 
 function App(props) {
 
-    const testState = useSelector((store) => store.test);
-
+const context = useContext(AppContext)
   return (
-    <div className={`${testState.colorMode} App`}>
+    <div className={`${context.colorMode} App`}>
         <div>
             <Link to={"/"}>Home</Link>
             <Link to={"/About"}>About</Link>
