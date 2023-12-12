@@ -16,6 +16,7 @@
     "@mui/joy": "^5.0.0-beta.17",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.6.2",
+    "browser-image-compression": "^2.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-lazy-load-image-component": "^1.6.0",

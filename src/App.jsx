@@ -7,6 +7,7 @@ import {ErrorPage} from "./components/ErrorPage.jsx";
 import {AppContext} from "./components/AppContextProvider.jsx";
 import '@fontsource/inter';
 import Test from "./components/Test.jsx";
+const CompressImageLazy = lazy(() => import('./components/CompressImage.jsx'))
 const TestLazy = lazy(() => import('./components/Test.jsx'))
 //test using lazy loaded components vs normal, depends if the component has big package size or not
 
@@ -31,12 +32,14 @@ function App(props) {
                 <Link to={"/"}>Home</Link>
                 <Link to={"/about"}>About</Link>
                 <Link to="/test">Test</Link>
+                <Link to="/compressimage">Compress Image</Link>
             </div>
             <Suspense fallback={<div></div>}>
                 <Routes>
                     <Route path={"/"} element={<Home/>}/>
                     <Route path={"/about"} element={<About/>}/>
                     <Route path="/test" element={<TestLazy/>}/>
+                    <Route path="/compressimage" element={<CompressImageLazy/>}/>
                     {/* catch all, so any unknown pages navigate back to the home page, or
              error page to show it doesn't exist, then auto redirect home  */}
                     <Route path="*" element={<ErrorPage/>}/>
