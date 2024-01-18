@@ -2,7 +2,7 @@
  margin: 0 auto;
 padding: 0;
 box-sizing: border-box;
-font-family: Rubik, serif ;
+font-family: Inter, serif ;
 font-weight: 500;
 font-size: 18px;
 -webkit-text-size-adjust: 100%;
@@ -38,7 +38,7 @@ padding: 0;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Rubik, serif ;
+    font-family: Inter, serif ;
 }
 
 button {
@@ -51,15 +51,15 @@ cursor: pointer;
 font-size: 1rem;
 font-weight: 400;
 }
-.light-mode button{
+.light button{
 border: 1px solid #2e3440;
 color: #2e3440;
 }
-.light-mode button:hover, .dark-mode button:hover  {
+.light button:hover, .dark button:hover  {
 border: 1px solid #88c0d0;
 color: #88c0d0;
 }
-.dark-mode button{
+.dark button{
 border:0.0625em solid rgb(76, 86, 106);
 color: inherit;
 }
@@ -73,12 +73,12 @@ flex-direction: column;
 
 }
 
-.App.dark-mode {
+.App.dark {
 background-color: #2e3440;
 color: rgb(236, 239, 244);
 }
 
-.App.light-mode {
+.App.light {
 color: #2e3440;
 background-color: white;
 }
@@ -100,6 +100,6 @@ max-height: 500px;
 
 
 .img {
-max-width: 800px;
+max-width: 600px;
 height: auto;
 }

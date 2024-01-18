@@ -1,44 +1,38 @@
 import {useContext, useEffect, useState, useRef} from 'react'
 import React from 'react'
 import axios from "axios";
+import {useStore} from "./src/store.js";
 
 function persistAxiosData(apiLink) {
-    // JSON.parse(sessionStorage.getItem("PersistTestComp")) ||
-    const [persistTestComp, setPersistTestComp] = useState({
-        fetchData: null,
-        loading: true,
-        fetchRan: false,
-    });
 
-    /* useEffect(() => {
-        sessionStorage.setItem("PersistTestComp", JSON.stringify(persistTestComp))
-        return () => {
-        }
-    }, [persistTestComp.fetchData]) */
 
-// let {persistTestComp, setPersistTestComp, updateData} = persistAxiosData('/')
+    const {fetchData, loading, fetchRan, setFetchData, resetFetchData} = useStore((state) => ({
+        fetchData: state.testComp.fetchData,
+        loading: state.testComp.loading,
+        fetchRan: state.testComp.fetchRan,
+        setFetchData: state.setFetchData,
+        resetFetchData: state.resetFetchData,
+    }));
 
+    //because react calls the cleanup function twice in development mode, we only use it in production, where cleanup is NOT called first.
     useEffect(() => {
         const abortController = new AbortController()
         try {
-            if (!persistTestComp.fetchRan) {
-                async function getAxiosData() {
-                    let res = await axios.get(`${import.meta.env.VITE_API_LINK}${apiLink}`, {
-                        signal: abortController.signal
-                    });
-                    let data = await res.data;
-                    if (data === undefined) {
-                        return
-                    }
-                    console.log(data)
-                    setPersistTestComp(prevState => ({
-                        ...prevState,
-                        loading: false,
-                        fetchRan: true,
-                        fetchData: data
-                    }))
+            async function getAxiosData() {
+                let res = await axios.get(`${import.meta.env.VITE_API_LINK}${apiLink}`, {
+                    signal: abortController.signal
+                });
+                let data = res.data;
+                if (data === undefined) {
+                    return
                 }
+                    setTimeout(() => {
+                        setFetchData(data);
+                        console.log(data)
+                    }, 2000)
+            }
 
+            if (!fetchRan) {
                 getAxiosData()
             }
         }
@@ -46,6 +40,8 @@ function persistAxiosData(apiLink) {
             console.log(e)
         }
         return () => {
+            //will make loading:true, fetchRan: false, so we run each time the component mounts, here we run once, and only again on updates
+            // resetFetchData()
             console.log("clean up function")
             abortController.abort()
         }
@@ -62,7 +58,7 @@ function persistAxiosData(apiLink) {
         }
     );
 
-    return {persistTestComp, setPersistTestComp}
+    return
 }
 
 export default persistAxiosData
