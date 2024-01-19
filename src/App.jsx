@@ -7,6 +7,7 @@ import {ErrorPage} from "./components/ErrorPage.jsx";
 import '@fontsource/inter';
 import {localStore} from "./store.js";
 import CircularProgress from '@mui/joy/CircularProgress';
+import {ErrorBoundary} from "react-error-boundary";
 
 const CompressImageLazy = lazy(() => import('./components/CompressImage.jsx'))
 const TestLazy = lazy(() => import('./components/Test.jsx'))
@@ -43,12 +44,16 @@ function App(props) {
                 <Routes>
                     <Route path={"/"} element={<Home/>}/>
                     <Route path={"/about"} element={<About/>}/>
-                    <Route path="/test" element={<Suspense fallback={<CircularProgress size="md" value={25} variant="soft"/>}>
-                        <TestLazy/>
-                    </Suspense>}/>
+                    <Route path="/test" element={
+                        <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
+                            <Suspense fallback={<CircularProgress size="md" value={25} variant="soft"/>}>
+                                <TestLazy/>
+                            </Suspense>
+                        </ErrorBoundary>
+                    }/>
                     <Route path="/compressimage" element={<CompressImageLazy/>}/>
                     {/* catch all, so any unknown pages navigate back to the home page, or
-             error page to show it doesn't exist, then auto redirect home  */}
+                    error page to show it doesn't exist, then auto redirect home */ }
                     <Route path="*" element={<ErrorPage/>}/>
                 </Routes>
 
