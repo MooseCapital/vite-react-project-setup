@@ -1,14 +1,13 @@
 import {useContext, useEffect, useState, useRef} from 'react'
 import React from 'react'
 import axios from "axios";
-import {useStore} from "./src/store.js";
+import {useStore} from "../store.js";
 
 function persistAxiosData(apiLink) {
 
 
     const {fetchData, loading, fetchRan, setFetchData, resetFetchData} = useStore((state) => ({
         fetchData: state.testComp.fetchData,
-        loading: state.testComp.loading,
         fetchRan: state.testComp.fetchRan,
         setFetchData: state.setFetchData,
         resetFetchData: state.resetFetchData,
@@ -26,17 +25,16 @@ function persistAxiosData(apiLink) {
                 if (data === undefined) {
                     return
                 }
-                    setTimeout(() => {
-                        setFetchData(data);
-                        console.log(data)
-                    }, 2000)
+
+                setFetchData(data);
+                console.log(data)
+
             }
 
             if (!fetchRan) {
                 getAxiosData()
             }
-        }
-        catch (e) {
+        } catch (e) {
             console.log(e)
         }
         return () => {

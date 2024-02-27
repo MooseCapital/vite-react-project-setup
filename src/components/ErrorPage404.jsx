@@ -6,9 +6,8 @@ const navigate = useNavigate();
 
     return (
         <>
-        <div>App Error. </div>
+        <div>404 page not found</div>
         <button className={'button'} onClick={() => navigate('/')}>go home</button>
-        <button className={'button'} onClick={resetErrorBoundary}>Try again</button>
         </>
     )
 }

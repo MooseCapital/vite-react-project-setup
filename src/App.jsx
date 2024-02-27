@@ -1,67 +1,97 @@
 import {useState, useEffect, useRef, useContext, lazy, Suspense} from 'react'
 import React from 'react'
-import {Link, Navigate, Route, Routes} from "react-router-dom";
+import {Link, Navigate, Outlet, Route, Routes} from "react-router-dom";
 import Home from "./components/Home.jsx";
-import About from "./components/About.jsx";
-import {ErrorPage} from "./components/ErrorPage.jsx";
 import '@fontsource/inter';
-import {localStore} from "./store.js";
+import {localStore, normalStore} from "./store.js";
 import CircularProgress from '@mui/joy/CircularProgress';
 import {ErrorBoundary} from "react-error-boundary";
 
-const CompressImageLazy = lazy(() => import('./components/CompressImage.jsx'))
-const TestLazy = lazy(() => import('./components/Test.jsx'))
+const TestPageLazy = lazy(() => import('./components/Test.jsx'))
+import About from "./components/About.jsx";
+import {ErrorPage} from "./components/ErrorPage.jsx";
+import {ErrorPage404} from "./components/ErrorPage404.jsx";
+
 //test using lazy loaded components vs normal, depends if the component has big package size or not
 
-//react-toastify  ->  https://fkhadra.github.io/react-toastify/introduction
-//  import { ToastContainer, toast } from 'react-toastify';
-//   import 'react-toastify/dist/ReactToastify.css';
-
-
-// when we handle async request, we put a skeleton before and load the skeleton when our 'load' state was true, https://react.dev/reference/react/Suspense
-// react simplifies it for us, with Suspense, now we don't need a load state, and we lazy import the component  https://react.dev/reference/react/lazy#suspense-for-code-splitting
-
-// Lazy load images
-//import {LazyLoadImage} from 'react-lazy-load-image-component';
-//import 'react-lazy-load-image-component/src/effects/blur.css';
-//lazy load images with packages, so they don't waste bandwidth unless user scrolls it into view, remember, make low kb placeholder image https://www.npmjs.com/package/react-lazy-load-image-component
-// then use effect='blur' for nice looks, until image loads when scrolling ->  https://squoosh.app/
-//<LazyLoadImage src={props?.image_url} placeholderSrc={props?.image2} alt="" effect={"blur"} />
 
 function App(props) {
 
-    const colorMode = localStore((state) => state.colorMode)
+
+
+    const {colorMode} = localStore((state) => ({
+        colorMode: state.colorMode
+    }));
 
     return (
         <div className={`${colorMode} App`}>
-            <div>
-                <Link to={"/"}>Home</Link>
-                <Link to={"/about"}>About</Link>
-                <Link to="/test">Test</Link>
-                <Link to="/compressimage">Compress Image</Link>
-            </div>
-            <Suspense fallback={<div></div>}>
+            <CompactPageErrorBoundary>
                 <Routes>
-                    <Route path={"/"} element={<Home/>}/>
-                    <Route path={"/about"} element={<About/>}/>
-                    <Route path="/test" element={
-                        <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
-                            <Suspense fallback={<CircularProgress size="md" value={25} variant="soft"/>}>
-                                <TestLazy/>
-                            </Suspense>
-                        </ErrorBoundary>
-                    }/>
-                    <Route path="/compressimage" element={<CompressImageLazy/>}/>
-                    {/* catch all, so any unknown pages navigate back to the home page, or
-                    error page to show it doesn't exist, then auto redirect home */ }
-                    <Route path="*" element={<ErrorPage/>}/>
-                </Routes>
+                    <Route path="/" element={<Layout/>}>
+                        <Route index element={<Home/>}/>
+                        <Route path="/test" element={
+                            <CompactPageErrorBoundary>
+                                <Suspense fallback={<CircularProgress/>}>
 
-            </Suspense>
+                                <Testing/>
+                                </Suspense>
+                            </CompactPageErrorBoundary>
+                        }/>
+
+                        {/* * is for any path that is NOT defined, if the user types it in the search bar, we redirect to 404 error page */}
+                        <Route path="*" element={<ErrorPage404/>}/>
+                    </Route>
+                </Routes>
+            </CompactPageErrorBoundary>
         </div>
     )
 }
 
+const logError = (Error, info) => {
+    // Do something with the error, e.g. log to an external API
+    // console.log(`error message: ${Error.message}`)
+    console.log(Error)
+    console.log(info);
+};
 
+function CompactPageErrorBoundary(props) {
+    //when the user clicks 'Try Again', it runs onReset, which runs the resetNormalState function in the store
+    const {resetNormalState} = normalStore((state) => ({
+        resetNormalState: state.resetNormalState
+    }));
+
+    return (
+        <ErrorBoundary FallbackComponent={ErrorPage} key={location.pathname}
+                       onReset={resetNormalState}
+                       onError={logError}>
+            {props.children}
+        </ErrorBoundary>
+    )
+}
+
+
+function Layout({children}) {
+    return (
+        <>
+            <header>
+                {/* Link vs NavLink, link is react equivalent to A tag for routing,
+                    NavLink lets us style depending on "active" or "pending" state
+                 */}
+                <Link to="/">Home</Link>
+                <Link to="/test">Test</Link>
+                <Link to="/chart">chart</Link>
+            </header>
+            {/* react components rendered between */}
+            {/* Outlet is a better alternative to children, so we don't wrap all routes with Layout
+                it's an explicit and structured way to handle nested routes
+             */}
+            <Outlet/>
+
+            {/* footer code here */}
+        </>
+
+    )
+
+}
 
 export default App

@@ -2,8 +2,7 @@ import {useContext, useEffect, useState, useRef, lazy, useCallback, Suspense} fr
 import React from 'react'
 import axios from "axios";
 import {Skeleton} from "@mui/joy";
-import persistAxiosData from "../../PersistAxios.jsx";
-import imageCompression from "browser-image-compression";
+import persistAxiosData from "./PersistAxios.jsx";
 import {useStore} from "../store.js";
 
 
@@ -15,7 +14,7 @@ function Test(props) {
         fetchRan: state.testComp.fetchRan,
         setFetchData: state.setFetchData
     }));
-    persistAxiosData('/');
+    // persistAxiosData('/');
 
 
     return (

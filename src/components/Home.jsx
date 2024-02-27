@@ -1,18 +1,18 @@
 import {useContext, useEffect, useState, useRef} from 'react'
 import React from 'react'
-import {localStore, sessionStore, useStore} from "../store.js";
+import {localStore, normalStore} from "../store.js";
 
 
 function Home(props) {
 
-    const {colorMode,toggleColorMode} = localStore((state) =>({
+    const {colorMode, toggleColorMode} = localStore((state) => ({
         colorMode: state.colorMode,
         toggleColorMode: state.toggleColorMode
     }));
 
-    const {counter,incrementCounter} = sessionStore((state) => ({
+    const {counter, incrementCounter} = normalStore((state) => ({
         counter: state.counter,
-       incrementCounter: state.incrementCounter
+        incrementCounter: state.incrementCounter
     }));
 
     return (
