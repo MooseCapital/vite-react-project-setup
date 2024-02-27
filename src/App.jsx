@@ -1,16 +1,17 @@
 import {useState, useEffect, useRef, useContext, lazy, Suspense} from 'react'
 import React from 'react'
-import {Link, Navigate, Outlet, Route, Routes} from "react-router-dom";
+import {Link, Navigate, Outlet, Route, Routes, useLocation} from "react-router-dom";
 import Home from "./components/Home.jsx";
 import '@fontsource/inter';
 import {localStore, normalStore} from "./store.js";
 import CircularProgress from '@mui/joy/CircularProgress';
 import {ErrorBoundary} from "react-error-boundary";
 
-const TestPageLazy = lazy(() => import('./components/Test.jsx'))
-import About from "./components/About.jsx";
-import {ErrorPage} from "./components/ErrorPage.jsx";
-import {ErrorPage404} from "./components/ErrorPage404.jsx";
+//do NOT lazy load error pages or we will get errors
+import ErrorPage from "./components/ErrorPage.jsx";
+import ErrorPage404 from "./components/ErrorPage404.jsx";
+const TestPageLazy = lazy(() => import('./components/Test.jsx'));
+const AboutPageLazy = lazy(() => import('./components/About.jsx'));
 
 //test using lazy loaded components vs normal, depends if the component has big package size or not
 
@@ -28,12 +29,22 @@ function App(props) {
             <CompactPageErrorBoundary>
                 <Routes>
                     <Route path="/" element={<Layout/>}>
-                        <Route index element={<Home/>}/>
+                        <Route index element={
+                            <CompactPageErrorBoundary>
+                                <Home/>
+                            </CompactPageErrorBoundary>
+                        }/>
                         <Route path="/test" element={
                             <CompactPageErrorBoundary>
                                 <Suspense fallback={<CircularProgress/>}>
-
-                                <Testing/>
+                                    <TestPageLazy/>
+                                </Suspense>
+                            </CompactPageErrorBoundary>
+                        }/>
+                        <Route path="/about" element={
+                            <CompactPageErrorBoundary>
+                                <Suspense fallback={<CircularProgress/>}>
+                                    <AboutPageLazy/>
                                 </Suspense>
                             </CompactPageErrorBoundary>
                         }/>
@@ -55,6 +66,7 @@ const logError = (Error, info) => {
 };
 
 function CompactPageErrorBoundary(props) {
+    const location = useLocation();
     //when the user clicks 'Try Again', it runs onReset, which runs the resetNormalState function in the store
     const {resetNormalState} = normalStore((state) => ({
         resetNormalState: state.resetNormalState
@@ -79,7 +91,8 @@ function Layout({children}) {
                  */}
                 <Link to="/">Home</Link>
                 <Link to="/test">Test</Link>
-                <Link to="/chart">chart</Link>
+                <Link to="/about">about</Link>
+                <Link to="/brokerouter">broken route</Link>
             </header>
             {/* react components rendered between */}
             {/* Outlet is a better alternative to children, so we don't wrap all routes with Layout

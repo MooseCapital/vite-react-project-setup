@@ -3,8 +3,6 @@ import React from 'react'
 import {Skeleton} from "@mui/joy";
 import Test from "./Test.jsx";
 
-// const LazyTest = lazy(() => import('./Test.jsx'))
-
 function About(props) {
 
 

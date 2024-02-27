@@ -12,4 +12,4 @@ const navigate = useNavigate();
     )
 }
 
-export {ErrorPageReset}
+export default ErrorPageReset

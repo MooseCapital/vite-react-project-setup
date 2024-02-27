@@ -18,10 +18,10 @@ function Home(props) {
     return (
         <>
             <div>Home page</div>
-            <button className={"test-btn"} onClick={toggleColorMode}>toggle color mode
+            <button className={"button"} onClick={toggleColorMode}>toggle color mode
             </button>
             <p>{`current state: ${colorMode}`}</p>
-            <button onClick={incrementCounter}>increment counter</button>
+            <button className={'button'} onClick={incrementCounter}>increment counter</button>
             <div>counter {counter}</div>
         </>
     )

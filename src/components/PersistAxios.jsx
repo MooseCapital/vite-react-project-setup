@@ -1,12 +1,12 @@
 import {useContext, useEffect, useState, useRef} from 'react'
 import React from 'react'
 import axios from "axios";
-import {useStore} from "../store.js";
+import {normalStore} from "../store.js";
 
 function persistAxiosData(apiLink) {
 
 
-    const {fetchData, loading, fetchRan, setFetchData, resetFetchData} = useStore((state) => ({
+    const {fetchData, loading, fetchRan, setFetchData, resetFetchData} = normalStore((state) => ({
         fetchData: state.testComp.fetchData,
         fetchRan: state.testComp.fetchRan,
         setFetchData: state.setFetchData,
