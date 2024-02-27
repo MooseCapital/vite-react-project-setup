@@ -3,8 +3,14 @@ go here to write a good readme https://readme.so/editor
 ```
 put code in 3 backticks to be copyable
 ```
-![react-badge.svg](public/images/react-badge.svg)
-![vitejs-badge.svg](public/images/vitejs-badge.svg)
+get badges here: [badges 1](https://github.com/aleen42/badges) , [badges 2](https://github.com/Ileriayo/markdown-badges)
+
+![vite-badge](https://badges.aleen42.com/src/vitejs.svg)
+![react-badge](https://badges.aleen42.com/src/react.svg)
+![tailwind](https://badges.aleen42.com/src/tailwindcss.svg)
+![nodejs](https://badges.aleen42.com/src/node.svg)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 
 1. Create a new empty project in webstorm
 2. go to the git tab on the bottom, and create a local repo. 
