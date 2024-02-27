@@ -12,13 +12,10 @@ get badges here: [badges 1](https://github.com/aleen42/badges) , [badges 2](http
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 
-1. Create a new empty project in webstorm
-2. go to the git tab on the bottom, and create a local repo. 
-3. at the top toolbar click git -> git branches, now create a *test* branch. This is safer and best practice to only commit important updates on main.
-4. go to git -> manage remotes, now add the ssh/http link to this repo
-5. on the git tab at the bottom, click fetch remotes, this adds all the files locally
-6. right click the most recent commit, and click checkout
-7. complete these git commands so we remove all but the most recent commit
+1. inside webstorm click new -> 'project from version control' 
+2. select our 'vite-react-project-setup'
+3. complete the steps below to squash all commits into one
+
 ```jsx
 rm -rf .git
 ```
@@ -31,20 +28,21 @@ git add .
 ```jsx
 git commit -m "Initial commit"
 ```
-8. go back to git at the top and manage remotes, remove this repo from our new project
-9. add the remote ssh branch link to our new project
-10. Main and test local branches should be at the same commit, and we should only have one. 
-11. for good practice, use "test" branch daily, then when we have important updates, use the main
+4. create a new project in github with the same name we chose in webstorm
+5. copy the ssh git link from github, in webstorm click git -> manage remotes -> add the ssh link
+6. in the git tab on the bottom, fetch from the link, now push to the main branch
+7. create a new branch called 'test', for good practice use this daily, and use 'main' for major updates
+8. npm install, to download everything from package.json
 
 ## npm config run scripts
 1. At the NPM config at the top, click "edit configurations", then add NPM from the list
-2. make sure to add the "dev" and "preview script" each, to start a local server with 
-1 click to the green arrow. remember these scripts need the path to where npm is installed.
+2. add all scripts from package.json, to start a local server with, so we can start by clicking the green arrow
+3. remember these scripts need the path to where node is installed.
+since we use nvm, it won't be in the webstorm directory, but in our home directory .nvm
 
 
 
 ## gh-pages when finished
-
 
 
 1) go to vite.config.js -> after plugins, write base with the current directory on Github
@@ -52,13 +50,8 @@ git commit -m "Initial commit"
 ```
 base: "/github project directory" 
  ```
-2) Install gh-pages that lets us easily deploy to gh-pages branch
-    
-```
-npm install gh-pages --save-dev
-```
 
-3) When we are ready to upload to GitHub pages do this
+3) When we are ready to upload to GitHub pages do this, click the build script, then preview it, then deploy,
     
     ```
     npm run build
@@ -74,21 +67,3 @@ npm install gh-pages --save-dev
 If it ask for username, give GitHub username, and by "password" it means GitHub access token. If we get the error "github pages already exist"
 . Go into node_modules folder -> .cache folder -> delete "gh-pages" -> redeploy
 
-
-
-## router
-we replaced Browser router with [Hashrouter](https://stackoverflow.com/questions/51974369/what-is-the-difference-between-hashrouter-and-browserrouter-in-react)
-in Github pages, we reloaded /about page and it would give a 404! 
-
-This is because, BrowserRouter syncs UI with url in the browser with HTML history API.
-
-HashRouter uses the has part of our URL to sync, so when we refresh, in local host, this is taken care of because, we have local server!
-but when on github pages, we have no server, only front-end. So when refreshing on another page, the server doesn't take it to the current 
-/about page . Hashrouter handles this, for now, later I assume we use the server side to change routing pages
-
-
-```jsx
-<HashRouter>
-        <App/>
-</HashRouter>
-```

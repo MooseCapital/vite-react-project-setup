@@ -10,11 +10,8 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "@fontsource/inter": "^5.0.16",
     "@mui/joy": "^5.0.0-beta.17",
-    "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.6.2",
     "browser-image-compression": "^2.0.2",
     "react": "^18.2.0",
@@ -29,6 +26,7 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.4",
+    "gh-pages": "^6.1.1",
     "vite": "4.4.9"
   }
 }
