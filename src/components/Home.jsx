@@ -1,6 +1,7 @@
 import {useContext, useEffect, useState, useRef} from 'react'
 import React from 'react'
 import {localStore, normalStore} from "../store.js";
+import {Button, Input, Modal, ModalClose, Sheet, Typography, Link} from "@mui/joy";
 
 
 function Home(props) {
@@ -10,20 +11,18 @@ function Home(props) {
         toggleColorMode: state.toggleColorMode
     }));
 
-    const {counter, incrementCounter} = normalStore((state) => ({
-        counter: state.counter,
-        incrementCounter: state.incrementCounter
+    const {test} = normalStore((state) => ({
+        test: state.test
     }));
-
+    const [counter, setCounter] = useState(0)
     return (
-        <>
+        <div style={{alignItems:"start"}}>
             <div>Home page</div>
-            <button className={"button"} onClick={toggleColorMode}>toggle color mode
-            </button>
+            <Button variant={'soft'} onClick={toggleColorMode}> toggle color mode</Button>
             <p>{`current state: ${colorMode}`}</p>
-            <button className={'button'} onClick={incrementCounter}>increment counter</button>
+            <Button variant={'soft'} onClick={() => setCounter(prevState => prevState + 1)}> increment counter</Button>
             <div>counter {counter}</div>
-        </>
+        </div>
     )
 }
 

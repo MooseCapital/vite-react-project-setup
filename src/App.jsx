@@ -2,14 +2,13 @@ import {useState, useEffect, useRef, useContext, lazy, Suspense} from 'react'
 import React from 'react'
 import {Link, Navigate, Outlet, Route, Routes, useLocation} from "react-router-dom";
 import Home from "./components/Home.jsx";
-import '@fontsource/inter';
 import {localStore, normalStore} from "./store.js";
-import CircularProgress from '@mui/joy/CircularProgress';
-import {ErrorBoundary} from "react-error-boundary";
+import {CircularProgress} from '@mui/joy';
 
-//do NOT lazy load error pages or we will get errors
-import ErrorPage from "./components/ErrorPage.jsx";
+//do NOT lazy load error pages or we will get errors!
+// const LazyErrorPage404 = lazy(() => import('./components/ErrorPage404.jsx'));
 import ErrorPage404 from "./components/ErrorPage404.jsx";
+import {PageErrorBoundary} from "./components/PageErrorBoundary.jsx";
 const TestPageLazy = lazy(() => import('./components/Test.jsx'));
 const AboutPageLazy = lazy(() => import('./components/About.jsx'));
 
@@ -19,70 +18,30 @@ const AboutPageLazy = lazy(() => import('./components/About.jsx'));
 function App(props) {
 
 
-
     const {colorMode} = localStore((state) => ({
         colorMode: state.colorMode
     }));
 
     return (
         <div className={`${colorMode} App`}>
-            <CompactPageErrorBoundary>
+            <PageErrorBoundary>
                 <Routes>
-                    <Route path="/" element={<Layout/>}>
-                        <Route index element={
-                            <CompactPageErrorBoundary>
-                                <Home/>
-                            </CompactPageErrorBoundary>
-                        }/>
-                        <Route path="/test" element={
-                            <CompactPageErrorBoundary>
-                                <Suspense fallback={<CircularProgress/>}>
-                                    <TestPageLazy/>
-                                </Suspense>
-                            </CompactPageErrorBoundary>
-                        }/>
-                        <Route path="/about" element={
-                            <CompactPageErrorBoundary>
-                                <Suspense fallback={<CircularProgress/>}>
-                                    <AboutPageLazy/>
-                                </Suspense>
-                            </CompactPageErrorBoundary>
-                        }/>
+                    <Route path="/" element={<NavLayoutWrapper/>}>
+                        <Route index element={<Home/>}/>
+                        <Route path="/test" element={<TestPageLazy/>}/>
+                        <Route path="/about" element={<AboutPageLazy/>}/>
 
                         {/* * is for any path that is NOT defined, if the user types it in the search bar, we redirect to 404 error page */}
                         <Route path="*" element={<ErrorPage404/>}/>
                     </Route>
                 </Routes>
-            </CompactPageErrorBoundary>
+            </PageErrorBoundary>
         </div>
     )
 }
 
-const logError = (Error, info) => {
-    // Do something with the error, e.g. log to an external API
-    // console.log(`error message: ${Error.message}`)
-    console.log(Error)
-    console.log(info);
-};
 
-function CompactPageErrorBoundary(props) {
-    const location = useLocation();
-    //when the user clicks 'Try Again', it runs onReset, which runs the resetNormalState function in the store
-    const {resetNormalState} = normalStore((state) => ({
-        resetNormalState: state.resetNormalState
-    }));
-
-    return (
-        <ErrorBoundary FallbackComponent={ErrorPage} key={location.pathname}
-                       onReset={resetNormalState}
-                       onError={logError}>
-            {props.children}
-        </ErrorBoundary>
-    )
-}
-
-
-function Layout({children}) {
+function NavLayoutWrapper({children}) {
     return (
         <>
             <header>
@@ -98,7 +57,10 @@ function Layout({children}) {
             {/* Outlet is a better alternative to children, so we don't wrap all routes with Layout
                 it's an explicit and structured way to handle nested routes
              */}
-            <Outlet/>
+             {/* put suspense around all children routes, instead of above in route */}
+            <Suspense fallback={<CircularProgress/>}>
+                <Outlet/>
+            </Suspense>
 
             {/* footer code here */}
         </>

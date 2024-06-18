@@ -7,8 +7,8 @@ import {BrowserRouter,HashRouter} from "react-router-dom";
 //redux store & provider wrapping app
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <HashRouter basename={'/'}>
+    <BrowserRouter>
         <App/>
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>
 )

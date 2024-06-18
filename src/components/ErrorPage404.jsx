@@ -1,15 +1,26 @@
 import {useContext, useEffect, useState, useRef} from 'react'
-import {Navigate, useNavigate} from "react-router-dom";
+import {Link, Navigate, useNavigate} from "react-router-dom";
+import Lottie from "lottie-react";
+import {Button} from "@mui/joy";
+import bear404 from "../Assets/bear-404.json";
+// const bear404Vite = new URL('/public/images/bear-404.json', import.meta.url).href
 
-function ErrorPageReset({resetErrorBoundary}) {
-const navigate = useNavigate();
+function ErrorPage404({resetErrorBoundary}) {
+    const navigate = useNavigate();
+    //start testing with lottie files package instead of this one using airbnbn lottie player
 
     return (
-        <>
-        <div>404 page not found</div>
-        <button className={'button'} onClick={() => navigate('/')}>go home</button>
-        </>
+        <div style={{backgroundColor: '#ffe4fc', overflow: 'hidden', position: 'relative'}}>
+            <Lottie animationData={bear404} loop={true} style={{height: '100vh'}}/>
+            <Button color="primary" size="sm" variant="soft"  component={Link} to={"/"}
+                 style={{position: 'absolute', top: '70%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1}}>
+                Go Home
+            </Button>
+
+
+        </div>
     )
 }
 
-export default ErrorPageReset
+export default ErrorPage404
+
