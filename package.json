@@ -10,7 +10,8 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@mui/joy": "^5.0.0-beta.17",
+    "@mantine/core": "^7.11.1",
+    "@mantine/hooks": "^7.11.1",
     "axios": "^1.6.2",
     "browser-image-compression": "^2.0.2",
     "lottie-react": "^2.4.0",
@@ -27,6 +28,9 @@
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.4",
     "gh-pages": "^6.1.1",
+    "postcss": "^8.4.39",
+    "postcss-preset-mantine": "^1.15.0",
+    "postcss-simple-vars": "^7.0.1",
     "vite": "4.4.9"
   }
 }

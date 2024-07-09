@@ -1,0 +1,138 @@
+/*
+
+    Responsive design:
+
+        using dynamic screen sizes with mantine screen variables
+        xs	36em	576px
+        sm	48em	768px
+        md	62em	992px
+        lg	75em	1200px
+        xl	88em	1408px
+
+        .demo {
+          @media (max-width: $mantine-breakpoint-xs) {
+            background-color: red;
+          }
+        }
+
+        mantine can hide any element that is less than or greator than the screen size variables with a simple property
+            -> hiddenFrom
+                <Button hiddenFrom="sm" color="orange">
+                    Hidden from sm
+                  </Button>
+                  <Button visibleFrom="sm" color="cyan">
+                    Visible from sm
+              </Button>
+
+        --> our own NON mantine components can use this simple hidden from property to hide elements on certain screen sizes
+           -> use the class mantine-hidden-from-size*
+          <div className="mantine-hidden-from-md">Hidden from md</div>
+
+
+        We can use the useMediaQuery hook to get the current screen size easily without css, and dynamically render components based on the screen size
+            import { useMediaQuery } from '@mantine/hooks';
+            function Demo() {
+              const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
+
+              return (
+                <Tooltip label={isMobile ? 'Mobile' : 'Desktop'}>
+                  <Button>Hover me</Button>
+                </Tooltip>
+              );
+            }
+
+        We can also simply set an elements property in the component based on the theme.breakpoints screen size
+            <Box w={{ base: 320, sm: 480, lg: 640 }} />;  -> width has different sizes at screen sizes here
+
+
+
+    Data attributes -  when we put Disabled on a button, we can add specific styles to it in this state
+        -> we also add the light and dark mixing, for multiple options depending on the color mode in this state
+        -> some states are disabled, loading, fullWidth, left..
+        https://mantine.dev/styles/data-attributes/
+        &[data-disabled] {
+             You can use Mantine PostCSS mixins inside data attributes
+            @mixin light {
+                border: 1px solid var(--mantine-color-gray-2);
+            }
+            @mixin dark {
+                border: 1px solid var(--mantine-color-dark-4);
+            }
+
+    Change the root element of a component: turn a button into an A link to a page.
+         -> we can pass ANY react component in, such as react-router link, like we did in mui
+            <Button component={Link} to="/react-router">
+              React router link
+            </Button>
+
+            -> we can also use any element, which is a bit longer, the react-router Link above simply
+                -> resolves to an A tag, which is much shorter
+            <Button
+                  renderRoot={(props) => (
+                    <a href="https://mantine.dev/" target="_blank" {...props} />
+                  )}
+                >  Mantine website    </Button>
+/*
+
+
+/*
+
+:root {
+ margin: 0 auto;
+padding: 0;
+box-sizing: border-box;
+font-family: Inter, serif ;
+font-weight: 500;
+font-size: 18px;
+-webkit-text-size-adjust: 100%;
+height: 100%;
+}
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/inter-latin-400-normal.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: fallback;
+}
+*/
+
+/*remember we set height, but if we set width, it does not take into account the scrollbar 10px, this creates horizontal scroller on the bottom
+    the solution is to not set width anywhere and it defaults, or set auto only, but we should set height. if we do set width, choose 100% over 100vw
+        to avoid surprise scrollbars   https://www.freecodecamp.org/news/html-page-width-height/        https://css-tricks.com/the-lengths-of-css/
+  https://www.nordtheme.com/
+    NEVER set page WIDTH, we get horizontal scroll issues.
+*/
+
+/* if the page is NOT filled up, the color will only show up to the current elements height, if height is 100% it will up the page, but once you scroll
+    below the page load view, the background color of .App will not cover it, so we need min-height to cover the entire scrollable page. even though it looks bad at first
+    our page may not be up to the full length, to not get the height: 100% error of it not filling IF we scrolls past 100%, we use min-height: 100vh, so it starts off filling
+    the full page even though its not full, and it goes past it if we make our page longer, so MIN height is not 100% of our current short content, its 100vh of entire page,
+    */
+
+/*
+
+html, body, #root, .App{
+min-height: 100vh;
+margin: 0;
+padding: 0;
+font-family: Inter, serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, serif ;
+}
+*/
+
+/*
+body {
+background-color: #88c0d0;
+} */
+/* .App {
+display: flex;
+flex-direction: column;
+
+} */
+

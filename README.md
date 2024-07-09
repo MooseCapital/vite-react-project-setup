@@ -1,16 +1,25 @@
-## project name
-go here to write a good readme https://readme.so/editor
-```
-put code in 3 backticks to be copyable
-```
-get badges here: [badges 1](https://github.com/aleen42/badges) , [badges 2](https://github.com/Ileriayo/markdown-badges)
+<h1 style="text-align: center;">Project name</h1>
 
-![vite-badge](https://badges.aleen42.com/src/vitejs.svg)
-![react-badge](https://badges.aleen42.com/src/react.svg)
-![tailwind](https://badges.aleen42.com/src/tailwindcss.svg)
-![nodejs](https://badges.aleen42.com/src/node.svg)
-![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+<div align="center">
+  <img src="https://badges.aleen42.com/src/vitejs.svg" alt="vite-badge">
+  <img src="https://badges.aleen42.com/src/react.svg" alt="react-badge">
+  <img src="https://badges.aleen42.com/src/tailwindcss.svg" alt="tailwind">
+  <img src="https://badges.aleen42.com/src/node.svg" alt="nodejs">
+<br>
+<img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="Postgres">
+<img src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB" alt="Express">
+<br>
+<img src="https://picsum.photos/id/179/500/300" width="500px" height="auto">
+
+</div>
+
+
+>  put project description here
+
+go here to write a good readme https://readme.so/editor
+
+get badges here: [modern round](https://github.com/aleen42/badges) , [square](https://github.com/Ileriayo/markdown-badges), [square2](https://github.com/alexandresanlim/Badges4-README.md-Profile)
+
 
 1. inside webstorm click new -> 'project from version control' 
 2. select our 'vite-react-project-setup'
@@ -18,14 +27,8 @@ get badges here: [badges 1](https://github.com/aleen42/badges) , [badges 2](http
 
 ```jsx
 rm -rf .git
-```
-```jsx
 git init
-```
-```jsx
 git add .
-```
-```jsx
 git commit -m "Initial commit"
 ```
 4. create a new project in github with the same name we chose in webstorm
@@ -43,7 +46,12 @@ since we use nvm, it won't be in the webstorm directory, but in our home directo
 
 
 ## gh-pages when finished
-
+For this, we need to be using hash router not BrowserRouter, because BrowserRouter doesn't work with GitHub pages.
+ We have no control over Githubs ability
+to redirect to our home route each time we refresh the page. So we use hash router. 
+We tell our app to make the project base projectname/#/ . 
+This way we don't need control over the server, we get routing control for anything after the hash.
+Since we will be using our own domain mostly, we might not need, but it's good to remember both routing methods.
 
 1) go to vite.config.js -> after plugins, write base with the current directory on Github
 
@@ -67,3 +75,16 @@ base: "/github project directory"
 If it ask for username, give GitHub username, and by "password" it means GitHub access token. If we get the error "github pages already exist"
 . Go into node_modules folder -> .cache folder -> delete "gh-pages" -> redeploy
 
+## 🚀 How to use
+
+ex.
+
+
+
+## 📝 Lessons Learned
+
+blah blah
+
+## 🪪 License
+
+blah blah

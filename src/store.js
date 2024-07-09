@@ -1,6 +1,7 @@
 import {create} from 'zustand'
 import {createJSONStorage, persist, devtools} from "zustand/middleware";
 import {immer} from 'zustand/middleware/immer'
+
 export const normalStore = create(devtools(immer((set) => ({
 
     immerTestState: {
@@ -26,30 +27,11 @@ export const normalStore = create(devtools(immer((set) => ({
 
 
 
-    testComp: {
-        fetchData: null,
-        loading: true,
-        fetchRan: false,
-    },
 
-    setFetchData: (data) => set((state) => ({
-        testComp: {
-            ...state.testComp,
-            fetchData: data,
-            fetchRan: true,
-        }
-    }), false, 'set fetch data'),
-    resetFetchData: () => set((state) => ({
-        testComp: {
-            ...state.testComp,
-            fetchRan: false,
-            fetchData: null,
-        }
-    }), false, 'reset fetch data'),
 }))));
 
 export const sessionStore = create(devtools(immer(persist((set, get) => ({
-        name: 'session-storage-test',
+
     }),
     {
         name: 'app-session-storage',
@@ -58,10 +40,11 @@ export const sessionStore = create(devtools(immer(persist((set, get) => ({
 ))));
 
 export const localStore = create(devtools(immer(persist((set, get) => ({
-        colorMode: 'light',
+       /*  colorMode: 'light',
         toggleColorMode: () => set(state => ({
             colorMode: state.colorMode === 'light' ? 'dark' : 'light'
-        }), false, 'toggle color mode'),
+        }), false, 'toggle color mode'), */
+
     }),
     {
         name: 'app-local-storage',

@@ -1,18 +1,12 @@
 import {useContext, useEffect, useState, useRef, lazy, useCallback, Suspense} from 'react'
 import React from 'react'
-import persistAxiosData from "./PersistAxios.jsx";
+
 import {normalStore} from "../store.js";
 
 
 function Test(props) {
 
-    // const {fetchData, loading, fetchRan, setFetchData} = useStore((state) => ({
-    //     fetchData: state.testComp.fetchData,
-    //     loading: state.testComp.loading,
-    //     fetchRan: state.testComp.fetchRan,
-    //     setFetchData: state.setFetchData
-    // }));
-    // persistAxiosData('/');
+
     const {counter, incrementCounter} = normalStore((state) => ({
         counter: state.counter,
         incrementCounter: state.incrementCounter
