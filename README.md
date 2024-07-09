@@ -79,8 +79,6 @@ If it ask for username, give GitHub username, and by "password" it means GitHub 
 
 ex.
 
-
-
 ## 📝 Lessons Learned
 
 blah blah

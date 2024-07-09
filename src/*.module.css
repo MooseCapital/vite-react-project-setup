@@ -30,6 +30,17 @@
 
 
         We can use the useMediaQuery hook to get the current screen size easily without css, and dynamically render components based on the screen size
+
+        -> our options are useMediaQuery or putting the classes in css https://mantine.dev/styles/responsive/#component-size-based-on-media-query
+      ** these 2 options work well for few, or we can write many classes in css with mediaquery there
+        -> BUT, if we want alot of different sizes like 3 or more, we need useMatches https://mantine.dev/styles/responsive/#use-matches-hook
+
+            const size = useMatches({
+                base: 'xs',
+                sm: 'sm',
+                lg: 'md',
+              });
+
             import { useMediaQuery } from '@mantine/hooks';
             function Demo() {
               const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
@@ -72,7 +83,86 @@
                     <a href="https://mantine.dev/" target="_blank" {...props} />
                   )}
                 >  Mantine website    </Button>
-/*
+
+
+     Dark mode & color scheme **
+
+                import { ActionIcon, useMantineColorScheme, useComputedColorScheme } from '@mantine/core';
+                import { IconSun, IconMoon } from '@tabler/icons-react';
+                import cx from 'clsx';
+                import classes from './*.module.css';
+
+                function Demo() {
+                  const { setColorScheme } = useMantineColorScheme();
+                  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+
+                  return (
+                    <ActionIcon
+                      onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
+                      variant="default"
+                      size="xl"
+                      aria-label="Toggle color scheme"
+                    >
+                      <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
+                      <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
+                    </ActionIcon>
+                  );
+                }
+
+     Dark mode - demo.module.css code
+
+                .icon {
+                  width: 22px;
+                  height: 22px;
+                    }
+
+                .dark {
+                  @mixin dark {
+                    display: none;
+                  }
+
+                  @mixin light {
+                    display: block;
+                  }
+                }
+
+                .light {
+                  @mixin light {
+                    display: none;
+                  }
+
+                  @mixin dark {
+                    display: block;
+                  }
+                }
+
+
+*/
+
+.icon {
+    width: 22px;
+    height: 22px;
+}
+
+.dark {
+    @mixin dark {
+        display: none;
+    }
+
+    @mixin light {
+        display: block;
+    }
+}
+
+.light {
+    @mixin light {
+        display: none;
+    }
+
+    @mixin dark {
+        display: block;
+    }
+}
 
 
 /*
