@@ -9,7 +9,8 @@ import '@mantine/core/styles.css';
 
 //do NOT lazy load error page boundary or we will get errors! we can lazy load the 404 page though
 import {PageErrorBoundary} from "./components/PageErrorBoundary.jsx";
-const LazyErrorPage404 = lazy(() => import('./components/ErrorPage404.jsx'));
+const ErrorPage404Lazy = lazy(() => import('./components/ErrorPage404.jsx'));
+const TestPageLazy = lazy(() => import('./components/Test.jsx'));
 
 /* Images and static assets:
     -> when importing assets/images normally, when building, they go in the asset folder beside html, js
@@ -44,10 +45,10 @@ function App(props) {
                         <Routes>
                             <Route path="/" element={<NavLayoutWrapper/>}>
                                 <Route index element={<Home/>}/>
-                                {/* <Route path="/test" element={<TestPageLazy/>}/> */}
+                                <Route path="/test" element={<TestPageLazy/>}/>
 
                                 {/* * is for any path that is NOT defined, if the user types it in the search bar, we redirect to 404 error page */}
-                                <Route path="*" element={<LazyErrorPage404/>}/>
+                                <Route path="*" element={<ErrorPage404Lazy/>}/>
                             </Route>
                         </Routes>
                     </PageErrorBoundary>
@@ -61,14 +62,14 @@ function App(props) {
 function NavLayoutWrapper({children}) {
     return (
         <>
-            {/* <header>
-                Link vs NavLink, link is react equivalent to A tag for routing,
-                    NavLink lets us style depending on "active" or "pending" state
+            <header>
+                {/* Link vs NavLink, link is react equivalent to A tag for routing, */}
+                {/*     NavLink lets us style depending on "active" or "pending" state */}
 
                 <Link to="/">Home</Link>
                 <Link to="/test">Test</Link>
                 <Link to="/brokerouter">broken route</Link>
-            </header> */}
+            </header>
             {/* react components rendered between */}
             {/* Outlet is a better alternative to children, so we don't wrap all routes with Layout
                 it's an explicit and structured way to handle nested routes

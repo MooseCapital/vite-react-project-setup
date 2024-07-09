@@ -18,7 +18,7 @@ function Home(props) {
     const [counter, setCounter] = useState(0)
 
     return (
-        <div style={{alignItems: "start"}}>
+        <div >
             <div>Home page</div>
 
             <button onClick={() => setCounter(prevState => prevState + 1)}> increment counter</button>

@@ -33,6 +33,7 @@
     "postcss": "^8.4.39",
     "postcss-preset-mantine": "^1.15.0",
     "postcss-simple-vars": "^7.0.1",
+    "vike": "^0.4.179",
     "vite": "4.4.9"
   }
 }
