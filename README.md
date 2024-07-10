@@ -9,7 +9,7 @@
 <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="Postgres">
 <img src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB" alt="Express">
 <br>
-<img src="https://picsum.photos/id/179/500/300" width="500px" height="auto">
+<img src="https://picsum.photos/id/179/500/300" width="600px" height="auto">
 
 </div>
 
