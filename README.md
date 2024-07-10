@@ -1,6 +1,6 @@
-<h1 style="text-align: center;">Project name</h1>
 
 <div align="center">
+<h1 style="text-align: center;">Project name</h1>
   <img src="https://badges.aleen42.com/src/vitejs.svg" alt="vite-badge">
   <img src="https://badges.aleen42.com/src/react.svg" alt="react-badge">
   <img src="https://badges.aleen42.com/src/tailwindcss.svg" alt="tailwind">
@@ -15,6 +15,10 @@
 
 
 >  put project description here
+>  <br>
+>  next line
+
+<br>
 
 go here to write a good readme https://readme.so/editor
 
