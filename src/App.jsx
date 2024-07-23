@@ -3,14 +3,12 @@ import React from 'react'
 import {Link, Navigate, Outlet, Route, Routes, useLocation} from "react-router-dom";
 import Home from "./components/Home.jsx";
 import {localStore, normalStore} from "./store.js";
-import {CircularProgress} from '@mui/joy';
 
 //do NOT lazy load error page boundary or we will get errors! we can lazy load the 404 page though
 const LazyErrorPage404 = lazy(() => import('./components/ErrorPage404.jsx'));
 // import ErrorPage404 from "./components/ErrorPage404.jsx";
 import {PageErrorBoundary} from "./components/PageErrorBoundary.jsx";
 const TestPageLazy = lazy(() => import('./components/Test.jsx'));
-const AboutPageLazy = lazy(() => import('./components/About.jsx'));
 
 //test using lazy loaded components vs normal, depends if the component has big package size or not
 
@@ -30,7 +28,6 @@ function App(props) {
                     <Route path="/" element={<NavLayoutWrapper/>}>
                         <Route index element={<Home/>}/>
                         <Route path="/test" element={<TestPageLazy/>}/>
-                        <Route path="/about" element={<AboutPageLazy/>}/>
 
                         {/* * is for any path that is NOT defined, if the user types it in the search bar, we redirect to 404 error page */}
                         <Route path="*" element={<LazyErrorPage404/>}/>

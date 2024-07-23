@@ -1,7 +1,6 @@
 import {useContext, useEffect, useState, useRef} from 'react'
 import React from 'react'
 import {localStore, normalStore} from "../store.js";
-import {Button, Input, Modal, ModalClose, Sheet, Typography, Link} from "@mui/joy";
 
 
 function Home(props) {
@@ -18,9 +17,9 @@ function Home(props) {
     return (
         <div style={{alignItems:"start"}}>
             <div>Home page</div>
-            <Button variant={'soft'} onClick={toggleColorMode}> toggle color mode</Button>
+            <button onClick={toggleColorMode}> toggle color mode</button>
             <p>{`current state: ${colorMode}`}</p>
-            <Button variant={'soft'} onClick={() => setCounter(prevState => prevState + 1)}> increment counter</Button>
+            <button onClick={() => setCounter(prevState => prevState + 1)}> increment counter</button>
             <div>counter {counter}</div>
         </div>
     )
