@@ -12,6 +12,23 @@ const TestPageLazy = lazy(() => import('./components/Test.jsx'));
 
 //test using lazy loaded components vs normal, depends if the component has big package size or not
 
+/* Images and static assets:
+    -> when importing assets/images normally, when building, they go in the asset folder beside html, js
+    -> import cat from '../assets/cat.webp'; the images are given a random name, such as cat.webp -> /assets/cat.123456.webp
+    -> and this image is included IN the build, and not simply served from the public folder
+ * we must import with public folder to get the correct name and so it is served at the root.
+    -> const cat = new URL('../../public/images/cat.webp', import.meta.url).href
+    -> now we don't see the image in the build, when the page loads, it is fetched from the public folder: /images/cat.webp
+  For other file types like our lottie.json this code can be included in the 404 js file or be served separately 404.json
+   -> since users have no need to see this code, we can include it in the build and js file
+*/
+
+/* Mantine Hooks:  https://mantine.dev/hooks/use-click-outside/
+    -> There are ui hooks, state hooks,event listener hooks, and utilities like copy clipboard, debounced state, lets us set state after a ms delay
+    -> These all make it much easier than setting it up ourselves, so check it always!
+    The range can make an array of numbers, which we would have used in a previous project
+        range(0, 5); // [0, 1, 2, 3, 4, 5]
+*/
 
 function App(props) {
 
